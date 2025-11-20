@@ -1,0 +1,43 @@
+{
+    "manifest_version": 3,
+    "name": "授業出席リマインダー",
+    "version": "1.0",
+    "description": "東京工科大学の授業開始時に出席登録を促すリマインダー",
+    "permissions": [
+        "storage",
+        "tabs"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "host_permissions": [
+        "https://service.cloud.teu.ac.jp/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://service.cloud.teu.ac.jp/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "styles.css"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    }
+}

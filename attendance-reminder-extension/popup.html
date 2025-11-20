@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アラーム設定</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>⏰ アラーム設定</h1>
+
+        <div class="setting-group">
+            <label for="before-slider">開始前（分）</label>
+            <div class="input-row">
+                <input type="range" id="before-slider" min="0" max="60" value="10" class="slider">
+                <input type="number" id="before-number" min="0" max="60" value="10" class="number-input">
+                <span class="unit">分</span>
+            </div>
+        </div>
+
+        <div class="setting-group">
+            <label for="after-slider">開始後（分）</label>
+            <div class="input-row">
+                <input type="range" id="after-slider" min="0" max="60" value="20" class="slider">
+                <input type="number" id="after-number" min="0" max="60" value="20" class="number-input">
+                <span class="unit">分</span>
+            </div>
+        </div>
+
+        <div class="setting-group">
+            <label for="mypage-link-toggle">マイページリンクボタン</label>
+            <div class="toggle-row">
+                <label class="switch">
+                    <input type="checkbox" id="mypage-link-toggle">
+                    <span class="slider-toggle"></span>
+                </label>
+                <span class="toggle-label">バナーにマイページへのリンクを表示</span>
+            </div>
+        </div>
+
+        <div class="setting-group">
+            <label for="new-tab-popup-toggle">新しいタブでポップアップを表示</label>
+            <div class="toggle-row">
+                <label class="switch">
+                    <input type="checkbox" id="new-tab-popup-toggle">
+                    <span class="slider-toggle"></span>
+                </label>
+                <span class="toggle-label">新しいタブを開いたときに自動的にこのポップアップを表示</span>
+            </div>
+        </div>
+
+        <button id="save-btn" class="save-button">保存</button>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

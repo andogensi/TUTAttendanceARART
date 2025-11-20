@@ -8,7 +8,7 @@ const CLASS_START_TIMES = [
     { period: 2, hour: 10, minute: 45, label: '2限' },
     { period: 3, hour: 13, minute: 15, label: '3限' },
     { period: 4, hour: 15, minute: 10, label: '4限' },
-    { period: 5, hour: 22, minute: 13, label: '5限' }
+    { period: 5, hour: 22, minute: 35, label: '5限' }
 ];
 
 // 動的に生成される授業時間範囲（設定値に基づく）

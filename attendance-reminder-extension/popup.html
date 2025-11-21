@@ -15,8 +15,8 @@
         <div class="setting-group">
             <label for="before-slider">開始前（分）</label>
             <div class="input-row">
-                <input type="range" id="before-slider" min="0" max="60" value="10" class="slider">
-                <input type="number" id="before-number" min="0" max="60" value="10" class="number-input">
+                <input type="range" id="before-slider" min="0" max="60" value="10" class="slider" aria-label="開始前の分数">
+                <input type="number" id="before-number" min="0" max="60" value="10" class="number-input" aria-label="開始前の分数入力">
                 <span class="unit">分</span>
             </div>
         </div>
@@ -24,8 +24,8 @@
         <div class="setting-group">
             <label for="after-slider">開始後（分）</label>
             <div class="input-row">
-                <input type="range" id="after-slider" min="0" max="60" value="20" class="slider">
-                <input type="number" id="after-number" min="0" max="60" value="20" class="number-input">
+                <input type="range" id="after-slider" min="0" max="60" value="20" class="slider" aria-label="開始後の分数">
+                <input type="number" id="after-number" min="0" max="60" value="20" class="number-input" aria-label="開始後の分数入力">
                 <span class="unit">分</span>
             </div>
         </div>
@@ -89,67 +89,67 @@
                 <div class="schedule-row" data-period="1">
                     <div class="schedule-cell period-cell">1限<br><span class="time-label">8:50</span></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="mon" data-period="1"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="月曜日1限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="tue" data-period="1"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="火曜日1限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="wed" data-period="1"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="水曜日1限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="thu" data-period="1"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="木曜日1限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="fri" data-period="1"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="金曜日1限"></div>
                 </div>
                 <div class="schedule-row" data-period="2">
                     <div class="schedule-cell period-cell">2限<br><span class="time-label">10:45</span></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="mon" data-period="2"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="月曜日2限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="tue" data-period="2"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="火曜日2限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="wed" data-period="2"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="水曜日2限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="thu" data-period="2"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="木曜日2限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="fri" data-period="2"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="金曜日2限"></div>
                 </div>
                 <div class="schedule-row" data-period="3">
                     <div class="schedule-cell period-cell">3限<br><span class="time-label">12:45</span></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="mon" data-period="3"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="月曜日3限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="tue" data-period="3"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="火曜日3限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="wed" data-period="3"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="水曜日3限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="thu" data-period="3"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="木曜日3限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="fri" data-period="3"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="金曜日3限"></div>
                 </div>
                 <div class="schedule-row" data-period="4">
                     <div class="schedule-cell period-cell">4限<br><span class="time-label">15:10</span></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="mon" data-period="4"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="月曜日4限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="tue" data-period="4"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="火曜日4限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="wed" data-period="4"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="水曜日4限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="thu" data-period="4"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="木曜日4限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="fri" data-period="4"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="金曜日4限"></div>
                 </div>
                 <div class="schedule-row" data-period="5">
                     <div class="schedule-cell period-cell">5限<br><span class="time-label">17:05</span></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="mon" data-period="5"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="月曜日5限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="tue" data-period="5"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="火曜日5限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="wed" data-period="5"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="水曜日5限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="thu" data-period="5"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="木曜日5限"></div>
                     <div class="schedule-cell"><input type="checkbox" data-day="fri" data-period="5"
-                            class="schedule-checkbox"></div>
+                            class="schedule-checkbox" aria-label="金曜日5限"></div>
                 </div>
             </div>
         </div>

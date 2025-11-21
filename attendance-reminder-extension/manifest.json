@@ -5,10 +5,13 @@
     "description": "東京工科大学の授業開始時に出席登録を促すリマインダー",
     "permissions": [
         "storage",
-        "tabs"
+        "tabs",
+        "notifications",
+        "alarms"
     ],
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background.js",
+        "type": "module"
     },
     "action": {
         "default_popup": "popup.html",
@@ -27,6 +30,9 @@
                 "https://service.cloud.teu.ac.jp/*"
             ],
             "js": [
+                "shared/constants.js",
+                "shared/utils.js",
+                "shared/storage.js",
                 "content.js"
             ],
             "css": [

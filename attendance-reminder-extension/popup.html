@@ -42,7 +42,7 @@
         </div>
 
         <div class="setting-group">
-            <label for="new-tab-popup-toggle">新しいタブでリマインダーを表示</label>
+            <label for="new-tab-popup-toggle">新しいタブでリマインダー表示</label>
             <div class="toggle-row">
                 <label class="switch">
                     <input type="checkbox" id="new-tab-popup-toggle">
@@ -60,6 +60,17 @@
                     <span class="slider-toggle"></span>
                 </label>
                 <span class="toggle-label">設定を変更したときに自動的に保存</span>
+            </div>
+        </div>
+
+        <div class="setting-group">
+            <label for="notification-toggle">デスクトップ通知</label>
+            <div class="toggle-row">
+                <label class="switch">
+                    <input type="checkbox" id="notification-toggle">
+                    <span class="slider-toggle"></span>
+                </label>
+                <span class="toggle-label">授業開始前にOS通知を表示</span>
             </div>
         </div>
 
@@ -154,16 +165,19 @@
             </div>
             <div class="credit-item">
                 <span class="credit-label">連絡先:</span>
-                <span class="credit-value">tekitpu@ggmalii.com</span>
+                <span class="credit-value">Discord: andogensi1st</span>
             </div>
             <div class="credit-item">
                 <span class="credit-label">バージョン:</span>
-                <span class="credit-value">beta v 0.6</span>
+                <span class="credit-value">Beta v0.7</span>
             </div>
         </div>
     </div>
 
-    <script src="popup.js"></script>
+    <script type="module" src="shared/constants.js"></script>
+    <script type="module" src="shared/utils.js"></script>
+    <script type="module" src="shared/storage.js"></script>
+    <script type="module" src="popup.js"></script>
 </body>
 
 </html>

@@ -1,10 +1,10 @@
-import { CLASS_START_TIMES, DAY_MAP } from './constants.js';
+// グローバルスコープの定数を使用（constants.jsがすでに読み込まれている前提）
 
 /**
  * 今日の日付キーを取得（YYYY-MM-DD形式）
  * @returns {string} 日付キー
  */
-export function getDateKey() {
+function getDateKey() {
     const today = new Date();
     return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 }
@@ -13,7 +13,7 @@ export function getDateKey() {
  * 現在の曜日キーを取得
  * @returns {string|null} 曜日キー（'mon', 'tue'など）、土日の場合はnull
  */
-export function getDayOfWeekKey() {
+function getDayOfWeekKey() {
     const dayOfWeek = new Date().getDay();
 
     // 土日の場合はnull
@@ -30,7 +30,7 @@ export function getDayOfWeekKey() {
  * @param {number} minutesAfter - 終了後の分数
  * @returns {Array} 授業時間範囲の配列
  */
-export function generateClassPeriods(minutesBefore, minutesAfter) {
+function generateClassPeriods(minutesBefore, minutesAfter) {
     return CLASS_START_TIMES.map(classTime => {
         // 開始時刻をミリ秒に変換
         const startDate = new Date();
@@ -60,7 +60,7 @@ export function generateClassPeriods(minutesBefore, minutesAfter) {
  * @param {Object} classSchedule - 授業スケジュール設定
  * @returns {Object|null} 現在の授業時限オブジェクト、該当なしの場合はnull
  */
-export function getCurrentClassPeriod(minutesBefore, minutesAfter, classSchedule) {
+function getCurrentClassPeriod(minutesBefore, minutesAfter, classSchedule) {
     const now = new Date();
     const currentHour = now.getHours();
     const currentMinute = now.getMinutes();
@@ -98,6 +98,6 @@ export function getCurrentClassPeriod(minutesBefore, minutesAfter, classSchedule
  * @param {number} periodNumber - 時限番号（1-5）
  * @returns {Object|null} 時限オブジェクト
  */
-export function getClassTimeByPeriod(periodNumber) {
+function getClassTimeByPeriod(periodNumber) {
     return CLASS_START_TIMES.find(p => p.period === periodNumber) || null;
 }

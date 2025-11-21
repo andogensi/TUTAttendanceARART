@@ -1,13 +1,11 @@
-
-import { STORAGE_KEYS, DEFAULT_MINUTES_BEFORE, DEFAULT_MINUTES_AFTER, DEFAULT_CLASS_SCHEDULE, DEFAULT_NOTIFICATION_ENABLED } from './constants.js';
-import { getDateKey } from './utils.js';
+// グローバルスコープに関数を定義（constants.jsとutils.jsがすでに読み込まれている前提）
 
 /**
  * 設定を取得（Promise版）
  * @param {Object} defaults - デフォルト値のオブジェクト
  * @returns {Promise<Object>} 設定オブジェクト
  */
-export function getSettings(defaults = {}) {
+function getSettings(defaults = {}) {
     return new Promise((resolve, reject) => {
         try {
             chrome.storage.sync.get(defaults, (items) => {
@@ -30,7 +28,7 @@ export function getSettings(defaults = {}) {
  * @param {Object} data 
  * @returns {Promise<void>}
  */
-export function saveSettings(data) {
+function saveSettings(data) {
     return new Promise((resolve, reject) => {
         try {
             chrome.storage.sync.set(data, () => {
@@ -53,7 +51,7 @@ export function saveSettings(data) {
  * @param {number} periodNumber - 時限番号
  * @returns {Promise<boolean>} 登録済みか
  */
-export function isAttendanceCompleted(periodNumber) {
+function isAttendanceCompleted(periodNumber) {
     return new Promise((resolve) => {
         const dateKey = getDateKey();
 
@@ -81,7 +79,7 @@ export function isAttendanceCompleted(periodNumber) {
  * @param {number} periodNumber 
  * @returns {Promise<void>}
  */
-export function saveAttendanceRecord(periodNumber) {
+function saveAttendanceRecord(periodNumber) {
     return new Promise((resolve) => {
         const dateKey = getDateKey();
 
@@ -128,7 +126,7 @@ export function saveAttendanceRecord(periodNumber) {
  * 古い出席記録をクリーンアップ
  * @returns {Promise<void>}
  */
-export function cleanOldAttendanceRecords() {
+function cleanOldAttendanceRecords() {
     return new Promise((resolve) => {
         const dateKey = getDateKey();
 
@@ -167,7 +165,7 @@ export function cleanOldAttendanceRecords() {
  * 全設定のデフォルト値を取得
  * @returns {Object} 
  */
-export function getDefaultSettings() {
+function getDefaultSettings_storage() {
     return {
         [STORAGE_KEYS.MINUTES_BEFORE]: DEFAULT_MINUTES_BEFORE,
         [STORAGE_KEYS.MINUTES_AFTER]: DEFAULT_MINUTES_AFTER,

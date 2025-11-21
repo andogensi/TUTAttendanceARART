@@ -1,7 +1,4 @@
-
-import { DEFAULT_MINUTES_BEFORE, DEFAULT_MINUTES_AFTER, DEFAULT_CLASS_SCHEDULE } from './shared/constants.js';
-import { generateClassPeriods, getCurrentClassPeriod } from './shared/utils.js';
-import { getSettings, isAttendanceCompleted, saveAttendanceRecord } from './shared/storage.js';
+// グローバルスコープで定義（importを削除）
 
 let CLASS_PERIODS = [];
 let dismissedBanners = new Set();
@@ -11,7 +8,7 @@ let currentBannerId = null;
 async function showBanner(period) {
     const bannerId = `attendance-banner-${period.period}`;
 
-
+    // 既に非表示にされている場合はスキップ
     if (dismissedBanners.has(bannerId)) {
         return;
     }

@@ -1,6 +1,5 @@
+// グローバルスコープの関数を使用（shared/constants.js, utils.js, storage.jsがすでに読み込まれている前提）
 
-import { getClassTimeByPeriod } from './shared/utils.js';
-import { saveAttendanceRecord } from './shared/storage.js';
 function getPeriodFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const periodNum = parseInt(params.get('period'), 10);

@@ -1,5 +1,17 @@
-import { DEFAULT_MINUTES_BEFORE, DEFAULT_MINUTES_AFTER, DEFAULT_CLASS_SCHEDULE, STORAGE_KEYS } from './shared/constants.js';
-import { getSettings, saveSettings, getDefaultSettings } from './shared/storage.js';
+// グローバルスコープの関数と定数を使用（importを削除）
+
+// デフォルト設定を取得する関数
+function getDefaultSettings() {
+    return {
+        [STORAGE_KEYS.MINUTES_BEFORE]: DEFAULT_MINUTES_BEFORE,
+        [STORAGE_KEYS.MINUTES_AFTER]: DEFAULT_MINUTES_AFTER,
+        [STORAGE_KEYS.SHOW_MYPAGE_LINK]: true,
+        [STORAGE_KEYS.SHOW_POPUP_ON_NEW_TAB]: true,
+        [STORAGE_KEYS.AUTO_SAVE_ENABLED]: false,
+        [STORAGE_KEYS.CLASS_SCHEDULE]: DEFAULT_CLASS_SCHEDULE,
+        [STORAGE_KEYS.NOTIFICATION_ENABLED]: DEFAULT_NOTIFICATION_ENABLED
+    };
+}
 
 const beforeSlider = document.getElementById('before-slider');
 const beforeNumber = document.getElementById('before-number');

@@ -31,8 +31,16 @@ const STORAGE_KEYS = {
     AUTO_SAVE_ENABLED: 'autoSaveEnabled',
     CLASS_SCHEDULE: 'classSchedule',
     ATTENDANCE_COMPLETED: 'attendanceCompleted',
-    NOTIFICATION_ENABLED: 'notificationEnabled'
+    NOTIFICATION_ENABLED: 'notificationEnabled',
+    REMINDER_SHOWN: 'reminderShown'
 };
+
+// リマインダーを表示しないURLパターン
+const EXCLUDED_URL_PATTERNS = [
+    'https://service.cloud.teu.ac.jp/moodle_epyc/',
+    'https://service.cloud.teu.ac.jp/eye/',
+    'chrome://newtab/'
+];
 
 
 function getDateKey() {
@@ -114,6 +122,58 @@ function getSettings(defaults = {}) {
     });
 }
 
+// 大学APIから出席状態を確認する関数
+async function checkAttendanceStatusFromAPI() {
+    try {
+        const response = await fetch('https://service.cloud.teu.ac.jp/eye/request/myinfo');
+        if (!response.ok) {
+            console.log('API取得失敗:', response.status);
+            return null;
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log('API呼び出しエラー:', error);
+        return null;
+    }
+}
+
+// 時限番号をAPIの時限コード(hachioji1-5)に変換
+function periodNumberToPeriodCode(periodNumber) {
+    return `hachioji${periodNumber}`;
+}
+
+// APIから現在ATTENDINGの授業があるかチェック
+async function isAttendingInAPI(periodNumber) {
+    try {
+        const apiData = await checkAttendanceStatusFromAPI();
+        if (!apiData || !apiData.lectures) {
+            return false;
+        }
+
+        const periodCode = periodNumberToPeriodCode(periodNumber);
+        
+        // 現在の時刻
+        const now = new Date().getTime();
+        
+        for (const lecture of apiData.lectures) {
+            // 指定された時限で、現在時刻が授業時間内で、statusがATTENDINGの場合
+            if (lecture.period === periodCode && 
+                lecture.status === 'ATTENDING' &&
+                lecture.begin_time <= now && 
+                lecture.end_time >= now) {
+                console.log('API上でATTENDING状態:', lecture.lecture_name);
+                return true;
+            }
+        }
+        
+        return false;
+    } catch (error) {
+        console.log('API出席確認エラー:', error);
+        return false;
+    }
+}
+
 function isAttendanceCompleted(periodNumber) {
     return new Promise((resolve) => {
         const dateKey = getDateKey();
@@ -137,6 +197,66 @@ function isAttendanceCompleted(periodNumber) {
     });
 }
 
+// URLがリマインダー表示から除外されるかチェック
+function shouldExcludeUrl(url) {
+    if (!url) return false;
+    
+    for (const pattern of EXCLUDED_URL_PATTERNS) {
+        if (url.startsWith(pattern)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// 既にリマインダーを表示したかチェック
+function isReminderShown(periodNumber) {
+    return new Promise((resolve) => {
+        const dateKey = getDateKey();
+        const key = `${dateKey}_${periodNumber}`;
+
+        try {
+            chrome.storage.local.get({ [STORAGE_KEYS.REMINDER_SHOWN]: {} }, (result) => {
+                if (chrome.runtime.lastError) {
+                    resolve(false);
+                    return;
+                }
+
+                const data = result[STORAGE_KEYS.REMINDER_SHOWN];
+                resolve(data[key] === true);
+            });
+        } catch (error) {
+            resolve(false);
+        }
+    });
+}
+
+// リマインダー表示済みフラグを設定
+function setReminderShown(periodNumber) {
+    return new Promise((resolve) => {
+        const dateKey = getDateKey();
+        const key = `${dateKey}_${periodNumber}`;
+
+        try {
+            chrome.storage.local.get({ [STORAGE_KEYS.REMINDER_SHOWN]: {} }, (result) => {
+                if (chrome.runtime.lastError) {
+                    resolve();
+                    return;
+                }
+
+                const data = result[STORAGE_KEYS.REMINDER_SHOWN];
+                data[key] = true;
+
+                chrome.storage.local.set({ [STORAGE_KEYS.REMINDER_SHOWN]: data }, () => {
+                    resolve();
+                });
+            });
+        } catch (error) {
+            resolve();
+        }
+    });
+}
+
 // Tab creation handler for new tab reminder
 chrome.tabs.onCreated.addListener(async (tab) => {
     try {
@@ -149,9 +269,22 @@ chrome.tabs.onCreated.addListener(async (tab) => {
         if (!settings.showPopupOnNewTab) {
             return;
         }
+        
+        // URLが指定されている場合は除外パターンをチェック
+        if (tab.url && shouldExcludeUrl(tab.url)) {
+            console.log('除外URLのため、リマインダーをスキップ:', tab.url);
+            return;
+        }
+        if (tab.pendingUrl && shouldExcludeUrl(tab.pendingUrl)) {
+            console.log('除外URLのため、リマインダーをスキップ:', tab.pendingUrl);
+            return;
+        }
+        
+        // 新しいタブでない場合はスキップ
         if (tab.url && tab.url !== 'chrome://newtab/' && !tab.pendingUrl) {
             return;
         }
+        
         const period = getCurrentClassPeriod(
             settings.minutesBefore,
             settings.minutesAfter,
@@ -159,10 +292,25 @@ chrome.tabs.onCreated.addListener(async (tab) => {
         );
 
         if (period) {
+            // 既にこの時限でリマインダーを表示済みかチェック
+            const alreadyShown = await isReminderShown(period.period);
+            if (alreadyShown) {
+                console.log(`${period.period}限のリマインダーは既に表示済みのため、スキップ`);
+                return;
+            }
+            
+            // ローカルストレージの出席登録状態をチェック
             const isCompleted = await isAttendanceCompleted(period.period);
+            
+            // APIのATTENDING状態もチェック
+            const isAttending = await isAttendingInAPI(period.period);
 
-            if (!isCompleted) {
+            // どちらかが完了していればリマインダーを表示しない
+            if (!isCompleted && !isAttending) {
                 const reminderUrl = chrome.runtime.getURL(`reminder.html?period=${period.period}`);
+
+                // リマインダー表示済みフラグを設定
+                await setReminderShown(period.period);
 
                 setTimeout(() => {
                     chrome.tabs.get(tab.id, (currentTab) => {
@@ -179,6 +327,8 @@ chrome.tabs.onCreated.addListener(async (tab) => {
                         }
                     });
                 }, 100);
+            } else if (isAttending) {
+                console.log(`${period.period}限はAPI上でATTENDING状態のため、リマインダーをスキップ`);
             }
         }
     } catch (error) {
@@ -279,9 +429,17 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
             return;
         }
 
+        // ローカルストレージの出席登録状態をチェック
         const isCompleted = await isAttendanceCompleted(period);
         if (isCompleted) {
             console.log(`${period}限は出席登録済みです`);
+            return;
+        }
+
+        // APIのATTENDING状態もチェック
+        const isAttending = await isAttendingInAPI(period);
+        if (isAttending) {
+            console.log(`${period}限はAPI上でATTENDING状態のため、通知をスキップ`);
             return;
         }
 

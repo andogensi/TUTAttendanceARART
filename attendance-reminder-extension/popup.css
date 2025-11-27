@@ -586,3 +586,18 @@ input:checked+.slider-toggle:before {
 .credit-value {
     color: #666;
 }
+
+.bug-report-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.bug-report-link:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}

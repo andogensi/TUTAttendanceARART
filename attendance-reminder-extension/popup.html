@@ -12,74 +12,88 @@
     <div class="container">
         <h1>⏰ TUT出席リマインダー</h1>
 
-        <div class="setting-group">
-            <label for="before-slider">開始前（分）</label>
-            <div class="input-row">
-                <input type="range" id="before-slider" min="0" max="60" value="10" class="slider" aria-label="開始前の分数">
-                <input type="number" id="before-number" min="0" max="60" value="10" class="number-input"
-                    aria-label="開始前の分数入力">
-                <span class="unit">分</span>
+        <!-- リマインダータイミング設定 -->
+        <div class="settings-box">
+            <h2 class="box-title">リマインダータイミング</h2>
+            <div class="setting-group">
+                <label for="before-slider">開始前（分）</label>
+                <div class="input-row">
+                    <input type="range" id="before-slider" min="0" max="60" value="10" class="slider" aria-label="開始前の分数">
+                    <input type="number" id="before-number" min="0" max="60" value="10" class="number-input"
+                        aria-label="開始前の分数入力">
+                    <span class="unit">分</span>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label for="after-slider">開始後（分）</label>
+                <div class="input-row">
+                    <input type="range" id="after-slider" min="0" max="60" value="20" class="slider" aria-label="開始後の分数">
+                    <input type="number" id="after-number" min="0" max="60" value="20" class="number-input"
+                        aria-label="開始後の分数入力">
+                    <span class="unit">分</span>
+                </div>
             </div>
         </div>
 
-        <div class="setting-group">
-            <label for="after-slider">開始後（分）</label>
-            <div class="input-row">
-                <input type="range" id="after-slider" min="0" max="60" value="20" class="slider" aria-label="開始後の分数">
-                <input type="number" id="after-number" min="0" max="60" value="20" class="number-input"
-                    aria-label="開始後の分数入力">
-                <span class="unit">分</span>
+        <!-- 表示設定 -->
+        <div class="settings-box">
+            <h2 class="box-title">🎨 表示設定</h2>
+            <div class="setting-group">
+                <label for="mypage-link-toggle">マイページリンクボタン</label>
+                <div class="toggle-row">
+                    <span class="toggle-label">バナーにマイページへのリンクを表示</span>
+                    <label class="switch">
+                        <input type="checkbox" id="mypage-link-toggle">
+                        <span class="slider-toggle"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label for="new-tab-popup-toggle">新しいタブでリマインダー表示</label>
+                <div class="toggle-row">
+                    <span class="toggle-label">新しいタブを開いたとき、授業時間内ならリマインダーページを表示</span>
+                    <label class="switch">
+                        <input type="checkbox" id="new-tab-popup-toggle">
+                        <span class="slider-toggle"></span>
+                    </label>
+                </div>
             </div>
         </div>
 
-        <div class="setting-group">
-            <label for="mypage-link-toggle">マイページリンクボタン</label>
-            <div class="toggle-row">
-                <span class="toggle-label">バナーにマイページへのリンクを表示</span>
-                <label class="switch">
-                    <input type="checkbox" id="mypage-link-toggle">
-                    <span class="slider-toggle"></span>
-                </label>
+        <!-- 機能設定 -->
+        <div class="settings-box">
+            <h2 class="box-title">⚙️ 機能設定</h2>
+            <div class="setting-group">
+                <label for="auto-save-toggle">自動保存</label>
+                <div class="toggle-row">
+                    <span class="toggle-label">設定を変更したときに自動的に保存</span>
+                    <label class="switch">
+                        <input type="checkbox" id="auto-save-toggle">
+                        <span class="slider-toggle"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label for="notification-toggle">デスクトップ通知</label>
+                <div class="toggle-row">
+                    <span class="toggle-label">授業開始前にOS通知を表示</span>
+                    <label class="switch">
+                        <input type="checkbox" id="notification-toggle">
+                        <span class="slider-toggle"></span>
+                    </label>
+                </div>
             </div>
         </div>
 
-        <div class="setting-group">
-            <label for="new-tab-popup-toggle">新しいタブでリマインダー表示</label>
-            <div class="toggle-row">
-                <span class="toggle-label">新しいタブを開いたとき、授業時間内ならリマインダーページを表示</span>
-                <label class="switch">
-                    <input type="checkbox" id="new-tab-popup-toggle">
-                    <span class="slider-toggle"></span>
-                </label>
-            </div>
-        </div>
-
-        <div class="setting-group">
-            <label for="auto-save-toggle">自動保存</label>
-            <div class="toggle-row">
-                <span class="toggle-label">設定を変更したときに自動的に保存</span>
-                <label class="switch">
-                    <input type="checkbox" id="auto-save-toggle">
-                    <span class="slider-toggle"></span>
-                </label>
-            </div>
-        </div>
-
-        <div class="setting-group">
-            <label for="notification-toggle">デスクトップ通知</label>
-            <div class="toggle-row">
-                <span class="toggle-label">授業開始前にOS通知を表示</span>
-                <label class="switch">
-                    <input type="checkbox" id="notification-toggle">
-                    <span class="slider-toggle"></span>
-                </label>
-            </div>
-        </div>
-
-        <div class="setting-group">
-            <label>📅 授業スケジュール</label>
-            <p class="schedule-hint">授業がある曜日・時限をチェックしてください</p>
-            <div class="schedule-calendar">
+        <!-- 授業スケジュール -->
+        <div class="settings-box">
+            <div class="setting-group">
+                <label>📅 授業スケジュール</label>
+                <p class="schedule-hint">授業がある曜日・時限をチェックしてください</p>
+                <div class="schedule-calendar">
                 <div class="schedule-header">
                     <div class="schedule-cell header-cell"></div>
                     <div class="schedule-cell header-cell">月</div>
@@ -153,6 +167,21 @@
                     <div class="schedule-cell"><input type="checkbox" data-day="fri" data-period="5"
                             class="schedule-checkbox" aria-label="金曜日5限"></div>
                 </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="support-section">
+            <div class="support-card">
+                <div class="support-header">
+                    <span class="support-emoji"></span>
+                    <span class="support-title">開発を支援</span>
+                </div>
+                <p class="support-description">この拡張機能が役に立ったら、開発を支援していただけると嬉しいです！</p>
+                <a href="https://ofuse.me/00518671" target="_blank" rel="noopener noreferrer" class="support-button">
+                    <span class="support-button-text">OFUSEで支援する</span>
+                    <span class="support-arrow">→</span>
+                </a>
             </div>
         </div>
 

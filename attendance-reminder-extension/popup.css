@@ -27,13 +27,45 @@ h1 {
     font-weight: 600;
 }
 
+/* 設定ボックス */
+.settings-box {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.settings-box:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border-color: #d0d0d0;
+}
+
+.box-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
 .setting-group {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+}
+
+.setting-group:last-child {
+    margin-bottom: 0;
 }
 
 .setting-group label {
     display: block;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     color: #555;
     margin-bottom: 10px;
@@ -203,205 +235,7 @@ h1 {
 }
 
 .toggle-label {
-    font-size: 13px;
-    color: #666;
-    text-align: left;
-    align-self: center;
-}
-
-/* トグルスイッチ */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 26px;
-    flex-shrink: 0;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider-toggle {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.3s;
-    border-radius: 26px;
-}
-
-.slider-toggle:before {
-    position: absolute;
-    content: "";
-    height: 20px;
-    width: 20px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.3s;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-input:checked+.slider-toggle {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-input:checked+.slider-toggle:before {
-    transform: translateX(24px);
-}
-
-.slider-toggle:hover {
-    opacity: 0.9;
-}
-
-/* スケジュールカレンダーのスタイル */
-.schedule-hint {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 12px;
-    margin-top: -6px;
-}
-
-.schedule-calendar {
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-    background: white;
-}
-
-.schedule-header {
-    display: grid;
-    grid-template-columns: 60px repeat(5, 1fr);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.schedule-row {
-    display: grid;
-    grid-template-columns: 60px repeat(5, 1fr);
-    border-top: 1px solid #e0e0e0;
-}
-
-.schedule-row:first-of-type {
-    border-top: none;
-}
-
-.schedule-cell {
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 13px;
-    min-height: 42px;
-    border-right: 1px solid #e0e0e0;
-}
-
-.schedule-cell:last-child {
-    border-right: none;
-}
-
-.header-cell {
-    color: white;
-    font-weight: 600;
-    font-size: 13px;
-    padding: 10px 6px;
-}
-
-.period-cell {
-    background: #f8f9fa;
-    font-weight: 600;
-    color: #555;
-    font-size: 11px;
-    line-height: 1.3;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.time-label {
-    font-size: 9px;
-    font-weight: 400;
-    color: #888;
-}
-
-.schedule-checkbox {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    accent-color: #667eea;
-    transition: transform 0.15s ease;
-}
-
-.schedule-checkbox:hover {
-    transform: scale(1.15);
-}
-
-.schedule-checkbox:active {
-    transform: scale(0.95);
-}
-
-.schedule-cell:has(.schedule-checkbox) {
-    background: #fafafa;
-    transition: background-color 0.2s ease;
-}
-
-.schedule-cell:has(.schedule-checkbox:checked) {
-    background: #f0f4ff;
-}
-
-.save-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
-}
-
-.save-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
-}
-
-.message {
-    margin-top: 16px;
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-size: 13px;
-    text-align: center;
-    font-weight: 500;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.message.show {
-    opacity: 1;
-}
-
-.message.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-.message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-
-/* トグルスイッチのスタイル */
-.toggle-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-}
-
-.toggle-label {
-    font-size: 13px;
+    font-size: 14px;
     color: #666;
     text-align: left;
     align-self: center;
@@ -600,4 +434,90 @@ input:checked+.slider-toggle:before {
 .bug-report-link:hover {
     color: #764ba2;
     text-decoration: underline;
+}
+
+/* 支援セクション */
+.support-section {
+    margin: 20px 0;
+}
+
+.support-card {
+    background: linear-gradient(135deg, #fff5f8 0%, #f8f0ff 100%);
+    border: 1.5px solid #ff6b9d40;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.support-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 12px rgba(255, 107, 157, 0.15);
+    border-color: #ff6b9d80;
+}
+
+.support-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.support-emoji {
+    font-size: 18px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.support-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.support-description {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.support-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #ff6b9d 0%, #c471ed 100%);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 107, 157, 0.25);
+}
+
+.support-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(255, 107, 157, 0.35);
+    background: linear-gradient(135deg, #ff5a8d 0%, #b461dd 100%);
+}
+
+.support-button:active {
+    transform: translateY(0);
+}
+
+.support-arrow {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.support-button:hover .support-arrow {
+    transform: translateX(3px);
 }

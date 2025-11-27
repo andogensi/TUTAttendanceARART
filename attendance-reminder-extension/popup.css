@@ -206,6 +206,7 @@ h1 {
     font-size: 13px;
     color: #666;
     text-align: left;
+    align-self: center;
 }
 
 /* トグルスイッチ */
@@ -403,6 +404,7 @@ input:checked+.slider-toggle:before {
     font-size: 13px;
     color: #666;
     text-align: left;
+    align-self: center;
 }
 
 /* トグルスイッチ */

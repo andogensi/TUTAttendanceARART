@@ -10,7 +10,13 @@
 
 <body>
     <div class="container">
-        <h1>⏰ TUT出席リマインダー</h1>
+        <div class="header-row">
+            <h1>⏰ TUT出席リマインダー</h1>
+            <label class="theme-switch" title="ダークモード切り替え">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="theme-slider"></span>
+            </label>
+        </div>
 
         <!-- リマインダータイミング設定 -->
         <div class="settings-box">
@@ -40,7 +46,7 @@
         <div class="settings-box">
             <h2 class="box-title">🎨 表示設定</h2>
             <div class="setting-group">
-                <label for="mypage-link-toggle">マイページリンクボタン</label>
+                <label for="mypage-link-toggle"><strong>マイページリンクボタン</strong></label>
                 <div class="toggle-row">
                     <span class="toggle-label">バナーにマイページへのリンクを表示</span>
                     <label class="switch">
@@ -51,7 +57,7 @@
             </div>
 
             <div class="setting-group">
-                <label for="new-tab-popup-toggle">新しいタブでリマインダー表示</label>
+                <label for="new-tab-popup-toggle"><strong>新しいタブでリマインダー表示</strong></label>
                 <div class="toggle-row">
                     <span class="toggle-label">新しいタブを開いたとき、授業時間内ならリマインダーページを表示</span>
                     <label class="switch">
@@ -66,7 +72,7 @@
         <div class="settings-box">
             <h2 class="box-title">⚙️ 機能設定</h2>
             <div class="setting-group">
-                <label for="auto-save-toggle">自動保存</label>
+                <label for="auto-save-toggle"></label><strong>自動保存</strong></label>
                 <div class="toggle-row">
                     <span class="toggle-label">設定を変更したときに自動的に保存</span>
                     <label class="switch">
@@ -77,7 +83,7 @@
             </div>
 
             <div class="setting-group">
-                <label for="notification-toggle">デスクトップ通知</label>
+                <label for="notification-toggle"><strong>デスクトップ通知</strong></label>
                 <div class="toggle-row">
                     <span class="toggle-label">授業開始前にOS通知を表示</span>
                     <label class="switch">
@@ -196,7 +202,7 @@
             </div>
             <div class="credit-item">
                 <span class="credit-label">連絡先:</span>
-                <span class="credit-value">Discord: andogensi1st</span>
+                <span class="credit-value">Discord: <span id="discord-id">andogensi1st</span> <button id="copy-discord-btn" class="copy-btn" title="コピー">📋</button></span>
             </div>
             <div class="credit-item">
                 <span class="credit-label">バグ報告や機能提案:</span>

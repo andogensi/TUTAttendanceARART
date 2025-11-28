@@ -7,7 +7,8 @@ function getDefaultSettings() {
         [STORAGE_KEYS.SHOW_POPUP_ON_NEW_TAB]: true,
         [STORAGE_KEYS.AUTO_SAVE_ENABLED]: false,
         [STORAGE_KEYS.CLASS_SCHEDULE]: DEFAULT_CLASS_SCHEDULE,
-        [STORAGE_KEYS.NOTIFICATION_ENABLED]: DEFAULT_NOTIFICATION_ENABLED
+        [STORAGE_KEYS.NOTIFICATION_ENABLED]: DEFAULT_NOTIFICATION_ENABLED,
+        darkMode: false
     };
 }
 
@@ -19,6 +20,7 @@ const saveBtn = document.getElementById('save-btn');
 const message = document.getElementById('message');
 const autoSaveToggle = document.getElementById('auto-save-toggle');
 const notificationToggle = document.getElementById('notification-toggle');
+const darkModeToggle = document.getElementById('dark-mode-toggle');
 
 let autoSaveTimeout = null;
 
@@ -54,6 +56,12 @@ async function loadSettingsFromStorage() {
     document.getElementById('new-tab-popup-toggle').checked = settings[STORAGE_KEYS.SHOW_POPUP_ON_NEW_TAB];
     autoSaveToggle.checked = settings[STORAGE_KEYS.AUTO_SAVE_ENABLED];
     notificationToggle.checked = settings[STORAGE_KEYS.NOTIFICATION_ENABLED];
+    darkModeToggle.checked = settings.darkMode || false;
+
+    // ダークモードを適用
+    if (settings.darkMode) {
+        document.body.classList.add('dark-mode');
+    }
 
     loadScheduleCalendar(settings[STORAGE_KEYS.CLASS_SCHEDULE]);
 
@@ -103,7 +111,8 @@ async function saveSettingsToStorage(showSuccessMessage = true) {
             [STORAGE_KEYS.SHOW_POPUP_ON_NEW_TAB]: showPopupOnNewTab,
             [STORAGE_KEYS.AUTO_SAVE_ENABLED]: autoSaveEnabled,
             [STORAGE_KEYS.CLASS_SCHEDULE]: classSchedule,
-            [STORAGE_KEYS.NOTIFICATION_ENABLED]: notificationEnabled
+            [STORAGE_KEYS.NOTIFICATION_ENABLED]: notificationEnabled,
+            darkMode: darkModeToggle.checked
         });
 
         chrome.runtime.sendMessage(
@@ -185,4 +194,25 @@ notificationToggle.addEventListener('change', performAutoSave);
 
 document.querySelectorAll('.schedule-checkbox').forEach(checkbox => {
     checkbox.addEventListener('change', performAutoSave);
+});
+
+// ダークモード切り替え
+darkModeToggle.addEventListener('change', () => {
+    if (darkModeToggle.checked) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+    performAutoSave();
+});
+
+// Discord IDコピーボタン
+document.getElementById('copy-discord-btn').addEventListener('click', () => {
+    const discordId = document.getElementById('discord-id').textContent;
+    navigator.clipboard.writeText(discordId).then(() => {
+        showMessage('Discord IDをコピーしました！', 'success');
+    }).catch(err => {
+        console.error('コピーに失敗しました:', err);
+        showMessage('コピーに失敗しました', 'error');
+    });
 });

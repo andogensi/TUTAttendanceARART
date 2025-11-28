@@ -337,8 +337,6 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
             console.log(`曜日が一致しません: ${currentDayKey} !== ${dayKey}`);
             return;
         }
-
-        // ローカルストレージの出席登録状態をチェック
         const isCompleted = await isAttendanceCompleted(period);
         if (isCompleted) {
             console.log(`${period}限は出席登録済みです`);

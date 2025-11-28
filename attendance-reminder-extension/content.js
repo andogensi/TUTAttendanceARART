@@ -1,5 +1,3 @@
-// グローバルスコープで定義（importを削除）
-
 let CLASS_PERIODS = [];
 let dismissedBanners = new Set();
 let currentBannerId = null;
@@ -8,7 +6,6 @@ let currentBannerId = null;
 async function showBanner(period) {
     const bannerId = `attendance-banner-${period.period}`;
 
-    // 既に非表示にされている場合はスキップ
     if (dismissedBanners.has(bannerId)) {
         return;
     }

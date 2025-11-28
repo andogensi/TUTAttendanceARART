@@ -1,4 +1,4 @@
-// デフォルト設定を取得する関数
+
 function getDefaultSettings() {
     return {
         [STORAGE_KEYS.MINUTES_BEFORE]: DEFAULT_MINUTES_BEFORE,
@@ -136,13 +136,10 @@ function performAutoSave() {
     if (!autoSaveToggle.checked) {
         return;
     }
-
-    // 既存のタイムアウトをクリア
     if (autoSaveTimeout) {
         clearTimeout(autoSaveTimeout);
     }
 
-    // 500ms後に保存（ユーザーが連続して変更している場合は待つ）
     autoSaveTimeout = setTimeout(() => {
         saveSettingsToStorage(false); // メッセージを表示しない
     }, 500);
@@ -196,7 +193,6 @@ document.querySelectorAll('.schedule-checkbox').forEach(checkbox => {
     checkbox.addEventListener('change', performAutoSave);
 });
 
-// ダークモード切り替え
 darkModeToggle.addEventListener('change', () => {
     if (darkModeToggle.checked) {
         document.body.classList.add('dark-mode');
@@ -206,7 +202,6 @@ darkModeToggle.addEventListener('change', () => {
     performAutoSave();
 });
 
-// Discord IDコピーボタン
 document.getElementById('copy-discord-btn').addEventListener('click', () => {
     const discordId = document.getElementById('discord-id').textContent;
     navigator.clipboard.writeText(discordId).then(() => {

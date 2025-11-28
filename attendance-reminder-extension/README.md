@@ -32,10 +32,16 @@
 
 ## インストール方法
 
+### 開発版（ローカルインストール）
+
 1. Chromeブラウザで `chrome://extensions/` を開きます
 2. 右上の「デベロッパーモード」を有効にします
 3. 「パッケージ化されていない拡張機能を読み込む」をクリック
 4. この `attendance-reminder-extension` フォルダを選択します
+
+### Chrome Web Store版（公開後）
+
+公開準備中です。公開後はChrome Web Storeから直接インストールできます。
 
 ## 使い方
 
@@ -105,7 +111,7 @@ attendance-reminder-extension/
 授業の実際の開始時刻を変更したい場合は、`shared/constants.js` の `CLASS_START_TIMES` を編集してください。
 
 ```javascript
-export const CLASS_START_TIMES = [
+const CLASS_START_TIMES = [
     { period: 1, hour: 8, minute: 50, label: '1限' },
     { period: 2, hour: 10, minute: 45, label: '2限' },
     // ...
@@ -129,17 +135,57 @@ export const CLASS_START_TIMES = [
 
 - この拡張機能は https://service.cloud.teu.ac.jp/ でのみ動作します
 - 出席記録は自動的にクリーンアップされ、古いデータは削除されます
+- 東京工科大学の学生専用の拡張機能です
 
-## 開発者情報
+## サポート・お問い合わせ
 
+### バグ報告・機能提案
+- 📝 [報告フォーム](https://forms.gle/9DFmtd2ZtZrMcse29)
+
+### 開発者情報
 - **開発者**: andogensi
-- **連絡先**: tekitpu@ggmalii.com / andogensi@gmail.com
-- **バージョン**: beta v 0.6
+- **Discord**: andogensi1st
+- **Email**: andogensi@gmail.com
+- **GitHub**: [AttendanceARART](https://github.com/andogensi/AttendanceARART)
+
+### 開発を支援
+この拡張機能が役に立ったら、開発を支援していただけると嬉しいです！
+- ☕ [OFUSEで支援する](https://ofuse.me/00518671)
+
+## バージョン情報
+
+**現在のバージョン**: 0.9.0 (Beta)
+
+### 変更履歴
+- **v0.9.0** (2025-11-28)
+  - リリース前の最終調整
+  - アクセシビリティの改善
+  - プライバシーポリシーの追加
+  - UIの改善とダークモード対応
+
+## Chrome Web Storeでの公開
+
+この拡張機能はChrome Web Storeで公開予定です。
+
+### インストール方法（公開後）
+1. Chrome Web Storeで「授業出席リマインダー」を検索
+2. 「Chromeに追加」をクリック
+3. 拡張機能アイコンをクリックして設定を行う
+
+## プライバシーとセキュリティ
+
+この拡張機能は、ユーザーのプライバシーを最優先に考えて設計されています：
+- ✅ 個人情報の収集なし
+- ✅ データの外部送信なし
+- ✅ すべてのデータはローカルに保存
+- ✅ 必要最小限の権限のみ使用
+
+詳細は[プライバシーポリシー](PRIVACY_POLICY.md)をご覧ください。
 
 ## ライセンス
 
-このプロジェクトは個人使用を目的としています。
+このプロジェクトは個人使用および教育目的での利用を目的としています。
 
-attendance-reminder-extension/
-    attendance-reminder-extension/
-        ├── manifest.json  
+---
+
+© 2025 andogensi. All rights reserved.  

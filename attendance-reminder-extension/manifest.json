@@ -1,8 +1,10 @@
 {
     "manifest_version": 3,
     "name": "授業出席リマインダー",
-    "version": "1.0",
+    "version": "0.9.0",
     "description": "東京工科大学の授業開始時に出席登録を促すリマインダー",
+    "author": "andogensi",
+    "homepage_url": "https://github.com/andogensi/AttendanceARART",
     "permissions": [
         "storage",
         "tabs",

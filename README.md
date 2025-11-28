@@ -165,7 +165,7 @@ const CLASS_START_TIMES = [
 
 ## Chrome Web Storeでの公開
 
-この拡張機能はChrome Web Storeで公開予定です。
+この拡張機能はChrome Web Storeで公開予定です。現在審査中
 
 ### インストール方法（公開後）
 1. Chrome Web Storeで「授業出席リマインダー」を検索

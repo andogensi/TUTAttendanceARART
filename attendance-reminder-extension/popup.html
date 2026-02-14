@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div class="header-row">
-            <h1>⏰ TUT出席リマインダー</h1>
+            <h1>TUT出席リマインダー</h1>
             <label class="theme-switch" title="ダークモード切り替え" aria-label="ダークモード切り替え">
                 <input type="checkbox" id="dark-mode-toggle" aria-label="ダークモード">
                 <span class="theme-slider"></span>
@@ -62,6 +62,34 @@
                         <input type="checkbox" id="new-tab-popup-toggle">
                         <span class="slider-toggle"></span>
                     </label>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <label><strong> リマインダーページ背景色</strong></label>
+                <div class="bg-mode-selector">
+                    <button type="button" class="bg-mode-btn active" data-mode="static" id="bg-mode-static">単色</button>
+                    <button type="button" class="bg-mode-btn" data-mode="gradient" id="bg-mode-gradient">グラデーション</button>
+                </div>
+
+                <div id="bg-static-settings" class="bg-color-settings">
+                    <div class="color-picker-row">
+                        <label class="color-label">背景色</label>
+                        <input type="color" id="bg-static-color" value="#667eea" class="color-picker-input">
+                        <span class="color-hex" id="bg-static-hex">#667eea</span>
+                    </div>
+                </div>
+
+                <div id="bg-gradient-settings" class="bg-color-settings" style="display: none;">
+                    <div id="gradient-colors-list">
+                        <!-- 動的に追加される -->
+                    </div>
+                    <button type="button" id="add-gradient-color" class="add-color-btn">＋ 色を追加</button>
+                </div>
+
+                <div class="bg-preview-container">
+                    <label class="color-label">プレビュー</label>
+                    <div id="bg-preview" class="bg-preview-box"></div>
                 </div>
             </div>
         </div>

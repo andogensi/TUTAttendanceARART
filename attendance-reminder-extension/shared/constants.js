@@ -29,5 +29,12 @@ const STORAGE_KEYS = {
     AUTO_SAVE_ENABLED: 'autoSaveEnabled',
     CLASS_SCHEDULE: 'classSchedule',
     ATTENDANCE_COMPLETED: 'attendanceCompleted',
-    NOTIFICATION_ENABLED: 'notificationEnabled'
+    NOTIFICATION_ENABLED: 'notificationEnabled',
+    REMINDER_BG_MODE: 'reminderBgMode',
+    REMINDER_BG_COLOR: 'reminderBgColor',
+    REMINDER_BG_COLORS: 'reminderBgColors'
 };
+
+const DEFAULT_REMINDER_BG_MODE = 'gradient';
+const DEFAULT_REMINDER_BG_COLOR = '#56CCF2';
+const DEFAULT_REMINDER_BG_COLORS = ['#56CCF2', '#2F80ED'];
